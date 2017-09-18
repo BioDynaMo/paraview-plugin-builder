@@ -1,6 +1,5 @@
 docker create --name=paraview paraview:5.4.1 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 docker start paraview
-docker cp ../docker/build_plugin.sh paraview:/home/buildslave/
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/
 echo "Building Plugin"
