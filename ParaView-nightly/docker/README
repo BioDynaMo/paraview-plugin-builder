@@ -1,0 +1,5 @@
+=== How to build ParaView 5.4.1 image ===
+ * edit build_paraview.sh and set paraview_nightly_hash to the paraview hash you want to build
+ * Note : the superbuild will always build its last master
+ * docker build -t "paraview:5.4.1-Nightly" .
+ * go into plugin directory to build your plugin

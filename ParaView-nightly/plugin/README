@@ -1,0 +1,9 @@
+
+===How to build your plugin===
+ * Make sure the docker image have been created (docker images should show a paraview:5.4.1 image)
+ * Create an archive named plugin.tgz containing a CMakeLists.txt at first level
+ * Copy it in the directory
+ * Create an associated plugin.cmake to configure your plugin if needed
+ * ./run_build_plugin.sh
+ * wait for completion
+ * this repository now contains a lib*.so file compatible with ParaView 5.4.1 Release for Linux (ParaView-5.4.1-Qt5-OpenGL2-MPI-Linux-64bit.tar.gz) 
