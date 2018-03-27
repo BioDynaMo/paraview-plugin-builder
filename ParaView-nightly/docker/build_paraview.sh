@@ -2,7 +2,7 @@
 
 set -e
 
-readonly paraview_nigthly_hash="63ddf4d"
+readonly paraview_nigthly_hash="d9b9f5a"
 readonly paraview_version="5.4"
 readonly paraview_version_patch="1"
 readonly paraview_version_full="${paraview_version}.${paraview_version_patch}"

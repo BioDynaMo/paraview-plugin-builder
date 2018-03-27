@@ -1,8 +1,8 @@
-FROM centos:6
+FROM centos:7
 MAINTAINER Ben Boeckel <ben.boeckel@kitware.com>
 
 # Install packages required for CMake
-RUN yum install -y curl-devel
+RUN yum install -y curl-devel make
 
 # Install packages required for buildslave
 RUN yum install -y epel-release && \
