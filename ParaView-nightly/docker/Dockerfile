@@ -1,5 +1,9 @@
 FROM centos:7
-MAINTAINER Ben Boeckel <ben.boeckel@kitware.com>
+MAINTAINER Mathieu Westphal <mathieu.westphal@kitware.com>
+
+ARG nightly_hash
+RUN echo "Building ParaView Release $nightly_hash"
+
 
 # Install packages required for CMake
 RUN yum install -y curl-devel make
@@ -48,9 +52,8 @@ RUN scl enable devtoolset-4 -- sh /home/buildslave/install_qt.sh
 
 # Build ParaView
 COPY build_paraview.sh /home/buildslave/build_paraview.sh
-COPY paraviewSuperbuildLinux541Nightly.cmake /home/buildslave/paraviewSuperbuildLinux541Nightly.cmake
-RUN scl enable devtoolset-4 -- sh /home/buildslave/build_paraview.sh
+COPY paraviewSuperbuildLinuxNightly.cmake /home/buildslave/paraviewSuperbuildLinuxNightly.cmake
+RUN scl enable devtoolset-4 -- sh /home/buildslave/build_paraview.sh $nightly_hash
 
 # Prepare Plugin Building
 COPY build_plugin.sh /home/buildslave/build_plugin.sh
-COPY plugin.cmake /home/buildslave/plugin.cmake

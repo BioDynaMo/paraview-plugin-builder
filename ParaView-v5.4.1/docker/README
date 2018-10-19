@@ -1,3 +1,0 @@
-=== How to build ParaView 5.4.1 image ===
- * docker build -t "paraview:5.4.1" .
- * go into plugin directory to build your plugin

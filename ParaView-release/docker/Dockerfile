@@ -1,5 +1,8 @@
 FROM centos:7
-MAINTAINER Ben Boeckel <ben.boeckel@kitware.com>
+MAINTAINER Mathieu Westphal <mathieu.westphal@kitaare.com>
+
+ARG release_tag
+RUN echo "Building ParaView Release $release_tag"
 
 # Install packages required for CMake
 RUN yum install -y curl-devel make
@@ -48,9 +51,8 @@ RUN scl enable devtoolset-4 -- sh /home/buildslave/install_qt.sh
 
 # Build ParaView
 COPY build_paraview.sh /home/buildslave/build_paraview.sh
-COPY paraviewSuperbuildLinux541.cmake /home/buildslave/paraviewSuperbuildLinux541.cmake
-RUN scl enable devtoolset-4 -- sh /home/buildslave/build_paraview.sh
+COPY cmake/paraviewSuperbuildLinux_$release_tag.cmake /home/buildslave/paraviewSuperbuildLinux.cmake
+RUN scl enable devtoolset-4 -- sh /home/buildslave/build_paraview.sh $release_tag
 
 # Prepare Plugin Building
 COPY build_plugin.sh /home/buildslave/build_plugin.sh
-COPY plugin.cmake /home/buildslave/plugin.cmake

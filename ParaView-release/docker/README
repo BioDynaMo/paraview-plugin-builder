@@ -1,0 +1,4 @@
+=== How to build ParaView release image ===
+ * ./run_build_paraview.sh release_tag
+ * eg: ./run_build_paraview.sh v5.5.2
+ * go into plugin directory to build your plugin
