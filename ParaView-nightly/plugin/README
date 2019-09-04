@@ -1,4 +1,8 @@
 ===How to build your plugin===
+ * Notes :
+ * This script is only compatible with ParaView 5.7.X nightlies
+ *
+ * Usage :
  * Make sure the docker image have been created (docker images should show a paraview:nightly_hash image)
  * Create an archive named plugin.tgz containing a CMakeLists.txt at first level
  * Copy it in the directory
@@ -6,4 +10,4 @@
  * ./run_build_plugin.sh nightly_hash
  * eg: ./run_build_plugin.sh 8f65d9a
  * wait for completion
- * this repository now contains a lib*.so file compatible with a particular nigthly release of ParaView for Linux
+ * this repository now contains one or more .so files compatible with a particular nigthly release of ParaView for Linux

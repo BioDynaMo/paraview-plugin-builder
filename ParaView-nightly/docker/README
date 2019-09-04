@@ -1,6 +1,9 @@
 === How to build ParaView nightly image ===
- * edit build_paraview.sh and set paraview_nightly_hash to the paraview hash you want to build
- * Note : the superbuild will always build its last master and configure it with the last version of the configuration
+ * Notes :
+ * The superbuild will always build its last master and configure it with the last version of the configuration
+ * This script is only currently only comptatible with ParaView 5.7.X nightlies.
+ *
+ * Usage :
  * ./run_build_paraview.sh nightly_hash
  * eg: ./run_build_paraview.sh 8f65d9a
  * go into plugin directory to build your plugin

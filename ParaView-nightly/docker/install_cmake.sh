@@ -2,7 +2,7 @@
 
 set -e
 
-readonly cmake_version="3.8"
+readonly cmake_version="3.10"
 readonly cmake_version_patch="2"
 readonly cmake_version_full="${cmake_version}.${cmake_version_patch}"
 

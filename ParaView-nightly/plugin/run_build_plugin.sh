@@ -7,5 +7,5 @@ docker exec paraview scl enable devtoolset-4 -- sh /home/buildslave/build_plugin
 docker cp paraview:/home/buildslave/misc/code/plugin/build ./
 docker stop paraview
 docker rm paraview
-cp ./build/lib*.so ./
+cp ./build/lib64/paraview-5.7/plugins/*/*.so ./
 rm -rf ./build
