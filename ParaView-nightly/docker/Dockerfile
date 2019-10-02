@@ -23,8 +23,9 @@ RUN yum install -y \
     xkeyboard-config gperf which
 
 # Install a newer set of compilers from the Software Collections repos
-RUN yum install -y centos-release-scl && \
-    yum install -y \
+RUN yum install -y centos-release-scl yum-utils
+RUN yum-config-manager --enable centos-sclo-rh-testing
+RUN yum install -y \
         devtoolset-4-gcc devtoolset-4-gcc-c++ devtoolset-4-gcc-gfortran \
         python27
 

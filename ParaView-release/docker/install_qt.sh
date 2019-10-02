@@ -3,7 +3,7 @@
 set -e
 
 readonly common_sb_url="https://gitlab.kitware.com/paraview/common-superbuild.git"
-readonly commit="8a55bcd8ddeb62446cda5487339980f2594c29cd"
+readonly commit="21d199f349605853be4b64c0306b316da6c18cc6"
 
 readonly workdir="$HOME/misc/code/qt5"
 readonly srcdir="$workdir/src"
