@@ -3,7 +3,7 @@
 set -e
 
 readonly common_sb_url="https://gitlab.kitware.com/paraview/common-superbuild.git"
-readonly commit="21d199f349605853be4b64c0306b316da6c18cc6"
+readonly commit="b33d663ed7299fdbfdac118a377f57dcb2c710f7"
 
 readonly workdir="$HOME/misc/code/qt5"
 readonly srcdir="$workdir/src"
@@ -22,6 +22,7 @@ cd "$builddir"
 cmake \
   -DENABLE_qt5:BOOL=ON \
   "-Dqt_install_location:PATH=$HOME/misc/root/qt5" \
+  "-Dqt5_SOURCE_SELECTION:STRING=5.10" \
   -GNinja \
   "$srcdir/standalone-qt"
 ninja

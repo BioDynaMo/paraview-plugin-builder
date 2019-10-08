@@ -39,7 +39,7 @@ SET(ENABLE_scipy ON CACHE BOOL "")
 SET(ENABLE_silo ON CACHE BOOL "")
 SET(ENABLE_tbb ON CACHE BOOL "")
 SET(ENABLE_visitbridge ON CACHE BOOL "")
-SET(ENABLE_visrtx OFF CACHE BOOL "") # not downloading from china ?
+SET(ENABLE_visrtx OFF CACHE BOOL "")  # VisRTX requires manual download
 SET(ENABLE_vistrails ON CACHE BOOL "")
 SET(ENABLE_vortexfinder2 ON CACHE BOOL "")
 SET(ENABLE_vrpn ON CACHE BOOL "")
