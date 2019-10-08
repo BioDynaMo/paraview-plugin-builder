@@ -1,3 +1,50 @@
+#!/bin/bash
+
+# Options management
+usage() { echo "Usage: $0 [-f <plugin folder>] hashOrTag" 1>&2; exit 1; }
+showHelp() { echo "TODO" 1>&2; exit 1; }
+
+while getopts ":f:h" o; do
+    case "${o}" in
+        f)
+            folder=${OPTARG}
+            ;;
+        h)
+            showHelp
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+hashOrTag=$1
+
+if [ -z "${hashOrTag}" ]; then
+    usage
+fi
+
+# Plugin archive management
+deleteArchive=false
+if ! [ -z ${folder} ]
+then
+    if [ -d ${folder} ]
+    then
+        echo ${folder}
+        # Create an archive from the plugin
+        tar -czvf plugin.tgz -C ${folder} .
+        deleteArchive=true
+    else
+        echo "Provided folder does not exist. Ignoring."
+    fi
+fi
+
+if ! [[ -f plugin.tgz ]]
+then
+     echo "No plugin.tgz archive found. Aborting."; exit 0;
+fi
+
+# Copy and build the plugin
 docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
@@ -22,3 +69,4 @@ else
   cp ./build/lib64/paraview-5.7/plugins/*/*.so ./
 fi
 rm -rf ./build
+rm -rf ./plugin.tgz

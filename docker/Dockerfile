@@ -1,4 +1,5 @@
-FROM centos:7
+ARG centosVersion
+FROM centos:$centosVersion
 MAINTAINER Mathieu Westphal <mathieu.westphal@kitware.com>
 
 ARG hashOrTag
