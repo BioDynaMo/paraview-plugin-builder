@@ -1,6 +1,6 @@
 Introduction
 ============
-[ParaViewPluginBuilder][] is an open-source docker based script to
+ParaViewPluginBuilder is an open-source docker based script to
 facilitate the building of plugin the binary release of [ParaView][]
 
 [ParaView]: http://www.paraview.org
@@ -8,8 +8,10 @@ facilitate the building of plugin the binary release of [ParaView][]
 TLDR
 ====
 
+```
 ./run_build_paraview releaseTag
 ./run_build_plugin -f /path/to/plugin/folder releaseTag
+```
 
 Building
 ========
@@ -30,11 +32,12 @@ Building ParaView
 To build paraview, use the run_build_paraview.sh script from the root directory.
 Release and Nightly hash build are supported. Just provide the tag of the release
 of the hash as the last positional argument.
+
 If needed provide the version of centos to build with. Default is 7.
-`run_build_paraview [-c <6|7>] hashOrTag`
-eg: `./run_build_paraview.sh -c 7 v5.6.2`
-or
-eg: `./run_build_paraview.sh 83a6c73`
+
+* `run_build_paraview [-c <6|7>] hashOrTag`
+* eg: `./run_build_paraview.sh -c 7 v5.6.2`
+* eg: `./run_build_paraview.sh 83a6c73`
 
 The following release versions are supported and tested
  * v5.4.1 # to test with new version
@@ -76,10 +79,9 @@ To build a plugin, first make sure that the targeted version of ParaView have be
 then use the run_build_plugin script from the root directory
 use -f option to point to the folder containing a plugin
 and provide it the tag to select the version of ParaView to build with.
-`run_build_plugin -f /path/to/plugin/folder hashOrTag`
-eg: `./run/build_plugin.sh -f /home/user/myPlugin v5.6.2`
-or
-eg: `./run/build_plugin.sh -f /home/user/myPlugin 83a6c73`
+* `run_build_plugin -f /path/to/plugin/folder hashOrTag`
+* eg: `./run/build_plugin.sh -f /home/user/myPlugin v5.6.2`
+* eg: `./run/build_plugin.sh -f /home/user/myPlugin 83a6c73`
 
 If no folder is provided, the script will try to use a plugin.tgz in the root directory.
 
