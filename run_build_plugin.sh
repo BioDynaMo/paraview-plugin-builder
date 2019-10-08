@@ -3,7 +3,7 @@ docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/
 echo "Building Plugin"
-docker exec paraview scl enable devtoolset-4 -- sh /home/buildslave/build_plugin.sh
+docker exec paraview scl enable devtoolset-6 -- sh /home/buildslave/build_plugin.sh
 docker cp paraview:/home/buildslave/misc/code/plugin/build ./
 docker stop paraview
 docker rm paraview
