@@ -1,16 +1,27 @@
 #!/bin/bash
 
-usage() { echo "Usage: $0 [-c <6|7>] hashOrTag" 1>&2; exit 1; }
-showHelp() { echo "TODO" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-c <6|7>] hashOrTag
 
-while getopts ":c:h" o; do
+an open-source docker based script to facilitate the building of plugin the binary release of ParaView
+
+Options:
+  -c   Version of centos to build ParaView with. Only 6 and 7 have been tested.
+       There is a bug in docker with Centos 6, add vsyscall=emulate to your kernel parameters.
+       See README.md for more info.
+
+hashOrTag:
+  v*   A release tag of ParaView. the following versions are supported
+       v5.4.1, v5.5.0, v5.5.1, v5.5.2, v5.6.0, v5.6.1, v5.6.2, v5.7.0
+
+  nightlyHash  A specific hash corresponding to a nightly build. Only hash after the last release tag
+               are supported, the superbuild will always uses it last master and ParaView will be configured
+               with the last version of the configuration." 1>&2; exit 1; }
+
+while getopts ":c:" o; do
     case "${o}" in
         c)
             centos=${OPTARG}
             ((centos == 6 || centos == 7)) || usage
-            ;;
-        h)
-            showHelp
             ;;
         *)
             usage

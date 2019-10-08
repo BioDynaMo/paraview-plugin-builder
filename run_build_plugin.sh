@@ -1,16 +1,25 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-f <plugin folder>] hashOrTag" 1>&2; exit 1; }
-showHelp() { echo "TODO" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-f <plugin folder>] hashOrTag
+
+an open-source docker based script to facilitate the building of plugin the binary release of ParaView
+
+Options:
+  -f   Path to a folder containing a plugin. This folder should contain a CMakeLists.txt.
+       If no folder is provided, this script will try to use a plugin.tgz file in the root directory.
+
+hashOrTag:
+  Must correspond to a an the tag of an existing docker image named paraview built with
+  the run_build_paraview.sh script
+
+Notes:
+  Modify plugin.cmake in order to pass specific cmake options to your plugin if needed" 1>&2; exit 1; }
 
 while getopts ":f:h" o; do
     case "${o}" in
         f)
             folder=${OPTARG}
-            ;;
-        h)
-            showHelp
             ;;
         *)
             usage

@@ -1,9 +1,10 @@
 Introduction
 ============
-ParaViewPluginBuilder is an open-source docker based script to
+ParaViewPluginBuilder is an open-source [docker][] based script to
 facilitate the building of plugin the binary release of [ParaView][]
 
 [ParaView]: http://www.paraview.org
+[docker]: https://www.docker.com
 
 TLDR
 ====
@@ -51,7 +52,10 @@ The following release versions are supported and tested
 
 About nightly hash builds. Only nightly hash after the last release tag are supported, 
 the superbuild will always uses it last master and ParaView will be configured with the last version
-of the configuration.
+of the configuration. 
+
+The nightly hash is present in the name of the nightly release download : 
+ParaView-5.7.0-492-g83a6c73-MPI-Linux-Python3.7-64bit.tgz hash is `83a6c73`.
 
 Once the script finished a new image named paraview and tagged `hashOrTag` should appear:
 
