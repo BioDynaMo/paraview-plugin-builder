@@ -35,6 +35,10 @@ if [ -z "${hashOrTag}" ]; then
     usage
 fi
 
+if [ -z "${centos}" ]; then
+    centos=7
+fi
+
 # prepare hashOrTag specific files
 # check if this is a release tag
 if [[ "${hashOrTag}" == v* ]]

@@ -1,10 +1,10 @@
-# Activate testing
+# Disable testing
 SET(BUILD_TESTING ON CACHE BOOL "")
 
-# Debug build
+# Release build
 SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "")
 
-
+# Options extracted from buildbot configuration
 SET(BUILD_SHARED_LIBS ON CACHE BOOL "")
 SET(DIY_SKIP_SVN ON CACHE BOOL "")
 SET(ENABLE_acusolve ON CACHE BOOL "")
@@ -39,7 +39,7 @@ SET(ENABLE_scipy ON CACHE BOOL "")
 SET(ENABLE_silo ON CACHE BOOL "")
 SET(ENABLE_tbb ON CACHE BOOL "")
 SET(ENABLE_visitbridge ON CACHE BOOL "")
-SET(ENABLE_visrtx OFF CACHE BOOL "")  # VisRTX requires manual download
+SET(ENABLE_visrtx OFF CACHE BOOL "") # visRTX requires some manual downloads
 SET(ENABLE_vistrails ON CACHE BOOL "")
 SET(ENABLE_vortexfinder2 ON CACHE BOOL "")
 SET(ENABLE_vrpn ON CACHE BOOL "")

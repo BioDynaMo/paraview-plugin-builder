@@ -1,9 +1,10 @@
-# Activate testing
+# Disable testing
 SET(BUILD_TESTING ON CACHE BOOL "")
 
-# Debug build
+# Release build
 SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "")
 
+# Options extracted from buildbot configuration
 SET(ENABLE_vrpn ON CACHE BOOL "")
 SET(ENABLE_xdmf3 ON CACHE BOOL "")
 SET(ENABLE_netcdf ON CACHE BOOL "")
