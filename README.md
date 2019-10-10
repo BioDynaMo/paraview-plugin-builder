@@ -41,10 +41,10 @@ If needed provide the version of centos to build with. Default is 7.
 * eg: `./run_build_paraview.sh 83a6c73`
 
 The following release versions are supported and tested
- * v5.4.1 # not working with new version boxlib bug
- * v5.5.0 # not working with new version boxlib bug
- * v5.5.1 # to test with new version
- * v5.5.2 # to test with new version
+ * v5.4.1 # boxlib bug
+ * v5.5.0 # boxlib bug
+ * v5.5.1 # boxlib bug
+ * v5.5.2 # boxlib bug
  * v5.6.0 # to test with new version
  * v5.6.1
  * v5.6.2
