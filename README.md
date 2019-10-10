@@ -41,20 +41,20 @@ If needed provide the version of centos to build with. Default is 7.
 * eg: `./run_build_paraview.sh 83a6c73`
 
 The following release versions are supported and tested
- * v5.4.1 # boxlib bug
- * v5.5.0 # boxlib bug
- * v5.5.1 # boxlib bug
- * v5.5.2 # boxlib bug
+ * v5.4.1 # to test with new version
+ * v5.5.0 # to test with new version
+ * v5.5.1 # to test with new version
+ * v5.5.2 # to test with new version
  * v5.6.0 # to test with new version
- * v5.6.1
+ * v5.6.1 # to test with new version
  * v5.6.2
  * v5.7.0 # libxml2 bug
 
-About nightly hash builds. Only nightly hash after the last release tag are supported,
+About nightly hash builds. Only nightly hash after the last release tag are supported, 
 the superbuild will always uses it last master and ParaView will be configured with the last version
-of the configuration.
+of the configuration. 
 
-The nightly hash is present in the name of the nightly release download :
+The nightly hash is present in the name of the nightly release download : 
 ParaView-5.7.0-492-g83a6c73-MPI-Linux-Python3.7-64bit.tgz hash is `83a6c73`.
 
 Once the script finished a new image named paraview and tagged `hashOrTag` should appear:
@@ -69,7 +69,7 @@ centos              7                   67fa590cfc1c        6 weeks ago         
 About Centos6
 =============
 
-Even though we support Centos6, there is a [bug][] in docker when using
+Even though we support Centos6, there is a [bug][] in docker when using 
 Centos6 because of spectre mitigation. It is possible to work around it
 by adding `vsyscall=emulate` to kernel parameters.
 Use at your own risk.
