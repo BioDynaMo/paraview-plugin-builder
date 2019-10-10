@@ -1,5 +1,5 @@
 # Disable testing
-SET(BUILD_TESTING ON CACHE BOOL "")
+SET(BUILD_TESTING OFF CACHE BOOL "")
 
 # Release build
 SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "")

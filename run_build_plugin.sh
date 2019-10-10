@@ -10,7 +10,7 @@ Options:
        If no folder is provided, this script will try to use a plugin.tgz file in the root directory.
 
 hashOrTag:
-  Must correspond to a an the tag of an existing docker image named paraview built with
+  Must correspond to the tag of an existing docker image named "paraview" built with
   the run_build_paraview.sh script
 
 Notes:

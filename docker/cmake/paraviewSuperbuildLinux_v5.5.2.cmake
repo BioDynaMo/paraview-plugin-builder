@@ -1,5 +1,5 @@
 # Activate testing
-SET(BUILD_TESTING ON CACHE BOOL "")
+SET(BUILD_TESTING OFF CACHE BOOL "")
 
 # Debug build
 SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "")
