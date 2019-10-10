@@ -3,18 +3,18 @@
 # Options management
 usage() { echo "Usage: $0 [-f <plugin folder>] hashOrTag
 
-an open-source docker based script to facilitate the building of plugin the binary release of ParaView
+An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
   -f   Path to a folder containing a plugin. This folder should contain a CMakeLists.txt.
        If no folder is provided, this script will try to use a plugin.tgz file in the root directory.
 
 hashOrTag:
-  Must correspond to the tag of an existing docker image named "paraview" built with
+  Must correspond to the tag of an existing docker image named 'paraview' built with
   the run_build_paraview.sh script
 
 Notes:
-  Modify plugin.cmake in order to pass specific cmake options to your plugin if needed" 1>&2; exit 1; }
+  You might need to modify plugin.cmake in order to pass specific CMake options to your plugin." 1>&2; exit 1; }
 
 while getopts ":f:h" o; do
     case "${o}" in
@@ -58,11 +58,12 @@ docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo hello 
 docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/
-echo "Building Plugin"
+echo "Building the plugin..."
 docker exec paraview scl enable devtoolset-6 -- sh /home/buildslave/build_plugin.sh
 docker cp paraview:/home/buildslave/misc/code/plugin/build ./
 docker stop paraview
 docker rm paraview
+echo "Done."
 
 # Recover the plugin libraries, location can change depending of ParaView version
 if [[ "$1" == v* ]]
@@ -74,7 +75,7 @@ then
     cp ./build/lib*.so ./
   fi
 else
-  # if not, we suppose that it is a nightly build
+  # If not, we suppose that it is a nightly build
   cp ./build/lib64/paraview-5.7/plugins/*/*.so ./
 fi
 rm -rf ./build

@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+
 readonly url="https://gitlab.kitware.com/paraview/paraview-superbuild.git"
 
 readonly workdir="$HOME/misc/code/paraview"

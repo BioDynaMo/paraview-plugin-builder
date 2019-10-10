@@ -3,7 +3,7 @@ FROM centos:$centosVersion
 MAINTAINER Mathieu Westphal <mathieu.westphal@kitware.com>
 
 ARG hashOrTag
-RUN echo "Building ParaView $hashOrTag"
+RUN echo "Building ParaView $hashOrTag..."
 
 COPY install_deps.sh /root/install_deps.sh
 RUN sh /root/install_deps.sh
