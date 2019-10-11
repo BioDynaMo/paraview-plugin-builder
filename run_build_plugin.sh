@@ -1,13 +1,15 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-d <plugin pluginDir>] hashOrTag
+usage() { echo "Usage: $0 [-d <plugin pluginDir>] [-j jobs] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
   -d   Path to a directory containing a plugin. This directory should contain a CMakeLists.txt.
        If no directory is provided, this script will try to use a plugin.tgz file in the root directory.
+
+  -j   Jobs : number of parallel jobs to build the plugin with. Default is 8.
 
 hashOrTag:
   Must correspond to the tag of an existing docker image named 'paraview' built with
@@ -16,10 +18,14 @@ hashOrTag:
 Notes:
   You might need to modify plugin.cmake in order to pass specific CMake options to your plugin." 1>&2; exit 1; }
 
-while getopts ":d:h" o; do
+nbJobs=8
+while getopts ":d:j:h" o; do
     case "${o}" in
         d)
             pluginDir=${OPTARG}
+            ;;
+        j)
+            nbJobs=${OPTARG}
             ;;
         *)
             usage
@@ -60,8 +66,8 @@ docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo hello 
 docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/
-echo "Building the plugin for ParaView ${hashOrTag} with devtoolset-${devtoolsets[${hashOrTag}]} ..."
-docker exec paraview scl enable devtoolset-${devtoolsets[${hashOrTag}]} -- sh /home/buildslave/build_plugin.sh
+echo "Building the plugin for ParaView ${hashOrTag} with devtoolset-${devtoolsets[${hashOrTag}]} using ${nbJobs} jobs ..."
+docker exec paraview scl enable devtoolset-${devtoolsets[${hashOrTag}]} -- sh /home/buildslave/build_plugin.sh ${nbJobs}
 docker cp paraview:/home/buildslave/misc/code/plugin/build ./
 docker stop paraview
 docker rm paraview

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-c <6|7>] [-f] hashOrTag
+usage() { echo "Usage: $0 [-c <6|7>] [-f] [-j jobs] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
@@ -13,6 +13,8 @@ Options:
   -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
        It is not needed most of the time and will result in longer compilation of ParaView.
 
+  -j   Jobs : number of parallel jobs to build ParaView with. Default is 8.
+
 hashOrTag:
   v*   A release tag of ParaView. the following versions are supported:
        v5.4.1, v5.5.0, v5.5.1, v5.5.2, v5.6.0, v5.6.1, v5.6.2, v5.7.0
@@ -21,8 +23,10 @@ hashOrTag:
                are supported, the superbuild will always uses it last master and ParaView will be configured
                with the last version of the configuration." 1>&2; exit 1; }
 
+centos=7
 fullBuild=OFF
-while getopts ":c:" o; do
+nbJobs=8
+while getopts ":c:fj:" o; do
     case "${o}" in
         c)
             centos=${OPTARG}
@@ -30,6 +34,9 @@ while getopts ":c:" o; do
             ;;
         f)
             fullBuild=ON
+            ;;
+        j)
+            nbJobs=${OPTARG}
             ;;
         *)
             usage
@@ -41,10 +48,6 @@ hashOrTag=$1
 
 if [ -z "${hashOrTag}" ]; then
     usage
-fi
-
-if [ -z "${centos}" ]; then
-    centos=7
 fi
 
 source docker/devtoolsets.sh
@@ -75,7 +78,9 @@ docker build -t "paraview:${hashOrTag}" \
   --build-arg hashOrTag=${hashOrTag} \
   --build-arg centosVersion=${centos} \
   --build-arg devtoolset=${devtoolset} \
-  --build-arg fullBuild=${fullBuild} ./docker/
+  --build-arg fullBuild=${fullBuild} \
+  --build-arg nbJobs=${nbJobs} \
+  ./docker/
 echo "Done."
 
 # Clean up the hashOrTag dependent files
