@@ -16,9 +16,9 @@ hashOrTag:
 Notes:
   You might need to modify plugin.cmake in order to pass specific CMake options to your plugin." 1>&2; exit 1; }
 
-while getopts ":f:h" o; do
+while getopts ":d:h" o; do
     case "${o}" in
-        f)
+        d)
             pluginDir=${OPTARG}
             ;;
         *)
@@ -48,7 +48,7 @@ then
     fi
 fi
 
-if ! [[ -d plugin.tgz ]]
+if ! [[ -f plugin.tgz ]]
 then
      echo "No plugin.tgz archive found. Aborting."; exit 0;
 fi
