@@ -58,8 +58,18 @@ if [ -z "${hashOrTag}" ]; then
     usage
 fi
 
-source docker/devtoolsets.sh
+# Recover release configuration
+source docker/releaseConfiguration.sh
+
 devtoolset="${devtoolsets[${hashOrTag}]}"
+if [ -z "${devtoolset}" ]; then
+    devtoolset=6
+fi
+
+qthash="${qthashes[${hashOrTag}]}"
+if [ -z "${qthash}" ]; then
+    qthash=b33d663ed7299fdbfdac118a377f57dcb2c710f7
+fi
 
 # Prepare hashOrTag specific files
 # Check if this is a release tag
@@ -84,6 +94,7 @@ fi
 echo "Building ParaView..."
 docker build -t "paraview:${hashOrTag}" \
   --build-arg hashOrTag=${hashOrTag} \
+  --build-arg qthash=${qthash} \
   --build-arg centosVersion=${centosVersion} \
   --build-arg devtoolset=${devtoolset} \
   --build-arg pythonVersion=${pythonVersion} \

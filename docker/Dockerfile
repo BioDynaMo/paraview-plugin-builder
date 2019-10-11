@@ -3,6 +3,7 @@ FROM centos:$centosVersion
 MAINTAINER Mathieu Westphal <mathieu.westphal@kitware.com>
 
 ARG hashOrTag
+ARG qthash
 ARG devtoolset
 ARG pythonVersion
 ARG fullBuild
@@ -30,7 +31,7 @@ RUN scl enable devtoolset-$devtoolset -- sh /home/buildslave/install_ninja.sh
 
 # Install Qt
 COPY install_qt.sh /home/buildslave/install_qt.sh
-RUN scl enable devtoolset-$devtoolset -- sh /home/buildslave/install_qt.sh
+RUN scl enable devtoolset-$devtoolset -- sh /home/buildslave/install_qt.sh $qthash
 
 # Build ParaView
 COPY build_paraview.sh /home/buildslave/build_paraview.sh
