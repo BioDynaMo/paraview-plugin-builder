@@ -46,3 +46,6 @@ endif(FULL_BUILD)
 # SET(ENABLE_paraviewtutorial ON CACHE BOOL "")
 # SET(ENABLE_paraviewusersguide ON CACHE BOOL "")
 # SET(ENABLE_paraviewgettingstartedguide ON CACHE BOOL "")
+
+# Supplemental options needed to complete the build
+SET(PARAVIEW_EXTRA_CMAKE_ARGUMENTS "-DPARAVIEW_BUILD_PLUGIN_StreamLinesRepresentation=OFF" CACHE STRING "")
