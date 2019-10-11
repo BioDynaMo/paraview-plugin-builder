@@ -6,7 +6,7 @@ usage() { echo "Usage: $0 [-c <6|7>] [-f] hashOrTag
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
-  -c   CentOS version to build ParaView with. Only 6 and 7 have been tested.
+  -c   CentOS version to build ParaView with. Only 6 and 7 are supported.
        There is a bug in docker with CentOS 6, add vsyscall=emulate to your kernel parameters.
        See README.md for more info.
 
