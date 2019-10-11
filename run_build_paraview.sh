@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-c <6|7>] hashOrTag
+usage() { echo "Usage: $0 [-c <6|7>] [-f] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
-  -c   Version of CentOS to build ParaView with. Only 6 and 7 have been tested.
+  -c   CentOS version to build ParaView with. Only 6 and 7 have been tested.
        There is a bug in docker with CentOS 6, add vsyscall=emulate to your kernel parameters.
        See README.md for more info.
+
+  -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
+       It is not needed most of the time and will result in longer compilation of ParaView.
 
 hashOrTag:
   v*   A release tag of ParaView. the following versions are supported:
@@ -18,11 +21,15 @@ hashOrTag:
                are supported, the superbuild will always uses it last master and ParaView will be configured
                with the last version of the configuration." 1>&2; exit 1; }
 
+fullBuild=OFF
 while getopts ":c:" o; do
     case "${o}" in
         c)
             centos=${OPTARG}
             ((centos == 6 || centos == 7)) || usage
+            ;;
+        f)
+            fullBuild=ON
             ;;
         *)
             usage
@@ -64,7 +71,11 @@ fi
 
 # Build the docker image
 echo "Building ParaView..."
-docker build -t "paraview:${hashOrTag}" --build-arg hashOrTag=${hashOrTag} --build-arg centosVersion=${centos} --build-arg devtoolset=${devtoolset} ./docker/
+docker build -t "paraview:${hashOrTag}"
+  --build-arg hashOrTag=${hashOrTag}
+  --build-arg centosVersion=${centos}
+  --build-arg devtoolset=${devtoolset}
+  --build-arg fullBuild=${fullBuild} ./docker/
 echo "Done."
 
 # Clean up the hashOrTag dependent files

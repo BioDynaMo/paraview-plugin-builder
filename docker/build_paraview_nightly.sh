@@ -24,5 +24,5 @@ git clone "$url"
 cd "$srcdir"
 git submodule update --init --recursive
 cd "$builddir"
-$HOME/misc/root/cmake/bin/cmake -C $HOME/paraviewSuperbuildLinux.cmake ../paraview-superbuild
-make
+$HOME/misc/root/cmake/bin/cmake -DFULL_BUILD=$2  -C $HOME/paraviewSuperbuildLinux.cmake ../paraview-superbuild
+make -j

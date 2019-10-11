@@ -35,20 +35,22 @@ To build ParaView, use the `run_build_paraview.sh` script from the main director
 As parameter, just provide a release tag or a nightly hash (both are supported)
 If needed (advanced cases), you can provide the version of CentOS to build with.
 Default version is 7.
+If needed (advanced cases), you can require that a full build of ParaView instead
+of a minimal one. It will take longer to build.
 
-* `run_build_paraview [-c <6|7>] hashOrTag`
+* `run_build_paraview [-c <6|7>] [-f] hashOrTag`
 * eg: `./run_build_paraview.sh -c 7 v5.6.2`
-* eg: `./run_build_paraview.sh 83a6c73`
+* eg: `./run_build_paraview.sh -f 83a6c73`
 
 The following release versions are supported and tested:
  * v5.4.1 # to test with new version
- * v5.5.0
+ * v5.5.0 # to test with new version
  * v5.5.1 # to test with new version
  * v5.5.2 # to test with new version
  * v5.6.0 # to test with new version
  * v5.6.1 # to test with new version
  * v5.6.2 # to test with new version
- * v5.7.0
+ * v5.7.0 # to test with new version
 
 About nightly hash builds: only nightly hash after the last release tag are supported.
 The last master superbuild will always be used and ParaView will be configured with
