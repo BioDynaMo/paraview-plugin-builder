@@ -43,18 +43,18 @@ of a minimal one. It will take longer to build.
 * eg: `./run_build_paraview.sh -f 83a6c73`
 
 The following release versions are supported and tested:
- * v5.4.1 # to test with new version
+ * v5.4.1 
  * v5.5.0 # to test with new version
  * v5.5.1 # to test with new version
- * v5.5.2 # to test with new version
- * v5.6.0 # to test with new version
- * v5.6.1 # to test with new version
- * v5.6.2 # to test with new version
- * v5.7.0 # to test with new version
+ * v5.5.2 
+ * v5.6.0 
+ * v5.6.1 
+ * v5.6.2 
+ * v5.7.0 
 
 About nightly hash builds: only nightly hash after the last release tag are supported.
 The last master superbuild will always be used and ParaView will be configured with
-the last version parameters.
+the last version parameters. # to test with new version
 
 The nightly hash is present in the name of the nightly release download :
 ParaView-5.7.0-492-g83a6c73-MPI-Linux-Python3.7-64bit.tgz hash is `83a6c73`.
