@@ -1,2 +1,2 @@
-# An example how to set a cmake option in a plugin
+# An example how to set a CMake option for building a plugin
 # SET(MY_CMAKE_OPTION ON CACHE BOOL "")
