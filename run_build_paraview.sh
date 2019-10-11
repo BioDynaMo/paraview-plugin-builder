@@ -71,10 +71,10 @@ fi
 
 # Build the docker image
 echo "Building ParaView..."
-docker build -t "paraview:${hashOrTag}"
-  --build-arg hashOrTag=${hashOrTag}
-  --build-arg centosVersion=${centos}
-  --build-arg devtoolset=${devtoolset}
+docker build -t "paraview:${hashOrTag}" \
+  --build-arg hashOrTag=${hashOrTag} \
+  --build-arg centosVersion=${centos} \
+  --build-arg devtoolset=${devtoolset} \
   --build-arg fullBuild=${fullBuild} ./docker/
 echo "Done."
 
