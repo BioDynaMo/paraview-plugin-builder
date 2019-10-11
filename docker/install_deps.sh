@@ -18,6 +18,7 @@ yum install -y centos-release-scl yum-utils
 yum-config-manager --enable centos-sclo-rh-testing
 yum install -y \
     devtoolset-6-gcc devtoolset-6-gcc-c++ devtoolset-6-gcc-gfortran \
+    devtoolset-4-gcc devtoolset-4-gcc-c++ devtoolset-4-gcc-gfortran \
     python27
 
 # Cleanup
