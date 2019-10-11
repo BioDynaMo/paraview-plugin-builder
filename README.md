@@ -13,7 +13,7 @@ TLDR
 
 ```
 ./run_build_paraview releaseTag
-./run_build_plugin -f /path/to/plugin/folder releaseTag
+./run_build_plugin -d /path/to/plugin/directory releaseTag
 ```
 
 Building
@@ -88,14 +88,14 @@ Building a plugin
 To build a plugin, first make sure that the targeted version of ParaView has been built,
 then use the `run_build_plugin` script.
 
-As parameters, use `-f` option to specify the path that contains the plugin sources,
+As parameters, use `-d` option to specify the path that contains the plugin sources,
 and specify the tag of the version of ParaView to build the plugin with.
-Note that if no folder is provided, the script tries to build the file `plugin.tgz`
+Note that if no plugin directory is provided, the script tries to build the file `plugin.tgz`
 in the script directory.
 
- * `run_build_plugin -f /path/to/plugin/folder hashOrTag`
- * eg: `./run_build_plugin.sh -f /home/user/myPlugin v5.6.2`
- * eg: `./run_build_plugin.sh -f /home/user/myPlugin 83a6c73`
+ * `run_build_plugin -d /path/to/plugin/directory hashOrTag`
+ * eg: `./run_build_plugin.sh -d /home/user/myPlugin v5.6.2`
+ * eg: `./run_build_plugin.sh -d /home/user/myPlugin 83a6c73`
 
 
 If specific CMake options have to be passed during the configuration of the plugin,

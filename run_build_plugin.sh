@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-f <plugin folder>] hashOrTag
+usage() { echo "Usage: $0 [-d <plugin pluginDir>] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
-  -f   Path to a folder containing a plugin. This folder should contain a CMakeLists.txt.
-       If no folder is provided, this script will try to use a plugin.tgz file in the root directory.
+  -d   Path to a directory containing a plugin. This directory should contain a CMakeLists.txt.
+       If no directory is provided, this script will try to use a plugin.tgz file in the root directory.
 
 hashOrTag:
   Must correspond to the tag of an existing docker image named 'paraview' built with
@@ -19,7 +19,7 @@ Notes:
 while getopts ":f:h" o; do
     case "${o}" in
         f)
-            folder=${OPTARG}
+            pluginDir=${OPTARG}
             ;;
         *)
             usage
@@ -35,20 +35,20 @@ fi
 
 # Plugin archive management
 deleteArchive=false
-if ! [ -z ${folder} ]
+if ! [ -z ${pluginDir} ]
 then
-    if [ -d ${folder} ]
+    if [ -d ${pluginDir} ]
     then
-        echo ${folder}
+        echo ${pluginDir}
         # Create an archive from the plugin
-        tar -czvf plugin.tgz -C ${folder} .
+        tar -czvf plugin.tgz -C ${pluginDir} .
         deleteArchive=true
     else
-        echo "Provided folder does not exist. Ignoring."
+        echo "Provided plugin directory does not exist. Ignoring."
     fi
 fi
 
-if ! [[ -f plugin.tgz ]]
+if ! [[ -d plugin.tgz ]]
 then
      echo "No plugin.tgz archive found. Aborting."; exit 0;
 fi
