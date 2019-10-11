@@ -59,15 +59,21 @@ then
      echo "No plugin.tgz archive found. Aborting."; exit 0;
 fi
 
-source docker/devtoolsets.sh
+# Recover release configuration
+source docker/releaseConfiguration.sh
+
+devtoolset="${devtoolsets[${hashOrTag}]}"
+if [ -z "${devtoolset}" ]; then
+    devtoolset=6
+fi
 
 # Copy and build the plugin
 docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo hello world; sleep 1; done"
 docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/
-echo "Building the plugin for ParaView ${hashOrTag} with devtoolset-${devtoolsets[${hashOrTag}]} using ${nbJobs} jobs ..."
-docker exec paraview scl enable devtoolset-${devtoolsets[${hashOrTag}]} -- sh /home/buildslave/build_plugin.sh ${nbJobs}
+echo "Building the plugin for ParaView ${hashOrTag} with devtoolset-${devtoolset} using ${nbJobs} jobs ..."
+docker exec paraview scl enable devtoolset-${devtoolset} -- sh /home/buildslave/build_plugin.sh ${nbJobs}
 docker cp paraview:/home/buildslave/misc/code/plugin/build ./
 docker stop paraview
 docker rm paraview
