@@ -18,8 +18,6 @@ SET(ENABLE_netcdf ON CACHE BOOL "")
 SET(ENABLE_numpy ON CACHE BOOL "")
 SET(ENABLE_paraview ON CACHE BOOL "")
 SET(ENABLE_python ON CACHE BOOL "")
-SET(ENABLE_python2 OFF CACHE BOOL "") # Targetting Python 3 release for now
-SET(ENABLE_python3 ON CACHE BOOL "")
 SET(ENABLE_qt5 ON CACHE BOOL "")
 SET(ENABLE_scipy ON CACHE BOOL "")
 SET(ENABLE_tbb ON CACHE BOOL "")
@@ -30,6 +28,15 @@ SET(USE_NONFREE_COMPONENTS ON CACHE BOOL "")
 SET(USE_SYSTEM_qt5 ON CACHE BOOL "")
 SET(paraview_SOURCE_DIR "/home/buildslave/misc/code/paraview/paraview" CACHE PATH "")
 SET(paraview_SOURCE_SELECTION "source" CACHE STRING "")
+
+# Python version management
+if(PYTHON_VERSION EQUAL 2)
+  SET(ENABLE_python2 ON CACHE BOOL "")
+  SET(ENABLE_python3 OFF CACHE BOOL "")
+else(PYTHON_VERSION EQUAL 2) # Python 3
+  SET(ENABLE_python2 OFF CACHE BOOL "")
+  SET(ENABLE_python3 ON CACHE BOOL "")
+endif(PYTHON_VERSION EQUAL 2)
 
 # Full build only release CMake options
 if(FULL_BUILD)

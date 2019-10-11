@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-c <6|7>] [-f] [-j jobs] hashOrTag
+usage() { echo "Usage: $0 [-c <6|7>] [-p <2|3>] [-f] [-j jobs] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
 Options:
-  -c   CentOS version to build ParaView with. Only 6 and 7 are supported.
+  -c   CentOS version to build ParaView with. Only 6 and 7 are supported. Default is 7.
        There is a bug in docker with CentOS 6, add vsyscall=emulate to your kernel parameters.
        See README.md for more info.
+
+  -p   Python version to build ParaView with. Only 2 and 3 are supported. Default is 3.
+       This option is taken into account only with v5.7.X and nightly hash
 
   -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
        It is not needed most of the time and will result in longer compilation of ParaView.
@@ -23,14 +26,19 @@ hashOrTag:
                are supported, the superbuild will always uses it last master and ParaView will be configured
                with the last version of the configuration." 1>&2; exit 1; }
 
-centos=7
+centosVersion=7
 fullBuild=OFF
 nbJobs=8
-while getopts ":c:fj:" o; do
+pythonVersion=3
+while getopts ":c:p:fj:" o; do
     case "${o}" in
         c)
-            centos=${OPTARG}
-            ((centos == 6 || centos == 7)) || usage
+            centosVersion=${OPTARG}
+            ((centosVersion == 6 || centosVersion == 7)) || usage
+            ;;
+        p)
+            pythonVersion=${OPTARG}
+            ((pythonVersion == 6 || pythonVersion == 7)) || usage
             ;;
         f)
             fullBuild=ON
@@ -76,8 +84,9 @@ fi
 echo "Building ParaView..."
 docker build -t "paraview:${hashOrTag}" \
   --build-arg hashOrTag=${hashOrTag} \
-  --build-arg centosVersion=${centos} \
+  --build-arg centosVersion=${centosVersion} \
   --build-arg devtoolset=${devtoolset} \
+  --build-arg pythonVersion=${pythonVersion} \
   --build-arg fullBuild=${fullBuild} \
   --build-arg nbJobs=${nbJobs} \
   ./docker/
