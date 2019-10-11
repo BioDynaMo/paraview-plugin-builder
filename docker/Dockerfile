@@ -5,7 +5,8 @@ MAINTAINER Mathieu Westphal <mathieu.westphal@kitware.com>
 ARG hashOrTag
 ARG devtoolset
 ARG fullBuild
-RUN echo "Building ParaView $hashOrTag on CentOS$centosVersion with devtoolset-$devtoolset ..."
+ARG centosVersion
+RUN echo "Building ParaView $hashOrTag on CentOS $centosVersion with devtoolset-$devtoolset ..."
 
 COPY install_deps.sh /root/install_deps.sh
 RUN sh /root/install_deps.sh

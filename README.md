@@ -73,7 +73,7 @@ About CentOS 6
 
 CentOS is the Linux distribution currently used to generate the official
 binaries of ParaView for Linux. However, there is a known [bug][] in
-docker when using CentOS6 because of spectre mitigation.
+docker when using CentOS 6 because of spectre mitigation.
 It is possible to work around it by adding `vsyscall=emulate` to kernel parameters.
 Use at your own risk!
 
