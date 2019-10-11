@@ -38,7 +38,7 @@ while getopts ":c:p:fj:" o; do
             ;;
         p)
             pythonVersion=${OPTARG}
-            ((pythonVersion == 6 || pythonVersion == 7)) || usage
+            ((pythonVersion == 2 || pythonVersion == 3)) || usage
             ;;
         f)
             fullBuild=ON
