@@ -40,6 +40,9 @@ if [ -z "${centos}" ]; then
     centos=7
 fi
 
+source docker/devtoolsets.sh
+devtoolset="${devtoolsets[${hashOrTag}]}"
+
 # Prepare hashOrTag specific files
 # Check if this is a release tag
 if [[ "${hashOrTag}" == v* ]]
@@ -61,7 +64,7 @@ fi
 
 # Build the docker image
 echo "Building ParaView..."
-docker build -t "paraview:${hashOrTag}" --build-arg hashOrTag=${hashOrTag} --build-arg centosVersion=${centos} ./docker/
+docker build -t "paraview:${hashOrTag}" --build-arg hashOrTag=${hashOrTag} --build-arg centosVersion=${centos} --build-arg devtoolset=${devtoolset} ./docker/
 echo "Done."
 
 # Clean up the hashOrTag dependent files

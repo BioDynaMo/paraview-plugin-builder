@@ -40,17 +40,15 @@ Default version is 7.
 * eg: `./run_build_paraview.sh -c 7 v5.6.2`
 * eg: `./run_build_paraview.sh 83a6c73`
 
-So far the following release versions are supported and tested:
+The following release versions are supported and tested:
+ * v5.4.1 # to test with new version
+ * v5.5.0
+ * v5.5.1 # to test with new version
+ * v5.5.2 # to test with new version
  * v5.6.0 # to test with new version
- * v5.6.1
- * v5.6.2
-
-The following versions are not yet supported:
- * v5.4.1 # boxlib bug
- * v5.5.0 # boxlib bug
- * v5.5.1 # boxlib bug
- * v5.5.2 # boxlib bug
- * v5.7.0 # libxml2 bug
+ * v5.6.1 # to test with new version
+ * v5.6.2 # to test with new version
+ * v5.7.0
 
 About nightly hash builds: only nightly hash after the last release tag are supported.
 The last master superbuild will always be used and ParaView will be configured with
