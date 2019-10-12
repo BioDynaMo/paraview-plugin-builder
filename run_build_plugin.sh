@@ -9,7 +9,7 @@ Options:
   -d   Path to a directory containing a plugin. This directory should contain a CMakeLists.txt.
        If no directory is provided, this script will try to use a plugin.tgz file in the current directory.
 
-  -j   Jobs : Number of parallel jobs to build the plugin with. Default is 8.
+  -j   Jobs : Number of parallel jobs to build the plugin with. Default is nproc+1.
 
 hashOrTag:
   Must correspond to the tag of an existing docker image named 'paraview' built with
@@ -18,7 +18,7 @@ hashOrTag:
 Notes:
   You might need to modify plugin.cmake in order to pass specific CMake options to your plugin." 1>&2; exit 1; }
 
-nbJobs=8
+let nbJobs=`nproc`+1
 while getopts ":d:j:h" o; do
     case "${o}" in
         d)
@@ -68,7 +68,7 @@ if [ -z "${devtoolset}" ]; then
 fi
 
 # Copy and build the plugin
-docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+docker create --name=paraview paraview:$1 /bin/sh -c "while true; do echo waiting; sleep 1; done"
 docker start paraview
 docker cp plugin.cmake paraview:/home/buildslave/
 docker cp plugin.tgz paraview:/home/buildslave/

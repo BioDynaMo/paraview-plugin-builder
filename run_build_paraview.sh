@@ -16,7 +16,7 @@ Options:
   -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
        It is not needed most of the time and will result in longer compilation of ParaView.
 
-  -j   Jobs : number of parallel jobs to build ParaView with. Default is 8.
+  -j   Jobs : number of parallel jobs to build ParaView with. Default is nproc+1.
 
 hashOrTag:
   v*   A release tag of ParaView. the following versions are supported:
@@ -28,7 +28,7 @@ hashOrTag:
 
 centosVersion=7
 fullBuild=OFF
-nbJobs=8
+let nbJobs=`nproc`+1
 pythonVersion=3
 while getopts ":c:p:fj:" o; do
     case "${o}" in
