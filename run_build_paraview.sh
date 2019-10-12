@@ -75,6 +75,12 @@ fi
 # Check if this is a release tag
 if [[ "${hashOrTag}" == v* ]]
 then
+  # check release tag does exist
+  git ls-remote --heads --tags "https://gitlab.kitware.com/paraview/paraview.git" | grep -E "refs/(heads|tags)/${hashOrTag}$" >/dev/null
+  if ! [[ "$?" -eq "0" ]]; then
+    echo "Unknown release tag ${hashOrTag}"
+    exit 1
+  fi
   # Check if it is a 5.7 build as it requires specific files
   if [[ "${hashOrTag}" == v5.7.? ]]
   then

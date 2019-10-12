@@ -17,6 +17,12 @@ cd "$workdir"
 git clone "$pvurl"
 cd "$pvsrcdir"
 git checkout "$paraview_nigthly_hash"
+if [ $? -ne 0 ]; then
+    echo "Unknown nightly hash: ${paraview_nigthly_hash}"
+    exit 1
+fi
+
+
 git submodule update --init --recursive
 
 cd "$workdir"
