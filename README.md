@@ -36,25 +36,25 @@ As parameter, just provide a release tag or a nightly hash (both are supported)
 If needed (advanced cases), you can provide the version of CentOS to build with.
 Default version is 7.
 If needed (advanced cases), you can require that a full build of ParaView instead
-of a minimal one. It will take longer to build.
+of a minimal one using the -f flag. It will take longer to build.
 
 * `run_build_paraview [-c <6|7>] [-f] hashOrTag`
 * eg: `./run_build_paraview.sh -c 7 v5.6.2`
 * eg: `./run_build_paraview.sh -f 83a6c73`
 
-The following release versions are supported and tested:
+The following release versions are supported:
  * v5.4.1 
- * v5.5.0 # to test with new version
- * v5.5.1 # to test with new version
+ * v5.5.0
+ * v5.5.1
  * v5.5.2 
  * v5.6.0 
  * v5.6.1 
  * v5.6.2 
- * v5.7.0 
+ * v5.7.0
 
-About nightly hash builds: only nightly hash after the last release tag are supported.
+About nightly hash builds: only nightly release after the last release tag are supported.
 The last master superbuild will always be used and ParaView will be configured with
-the last version parameters. # to test with new version
+the last version parameters.
 
 The nightly hash is present in the name of the nightly release download :
 ParaView-5.7.0-492-g83a6c73-MPI-Linux-Python3.7-64bit.tgz hash is `83a6c73`.
@@ -102,6 +102,23 @@ in the script directory.
 
 If specific CMake options have to be passed during the configuration of the plugin,
 they can be specified in the `plugin.cmake` file.
+
+About binary plugin compatibility
+=================================
+
+Once a plugin have been built for a specific release or nightly hash, it is assured to be
+compatible only with this specific release or nightly. However, in most cases, a binary plugin
+may load and work perfectly with all patch version of the release it has been built for.
+e.g.: a plugin built for v5.5.0 may be compatible with v5.5.1 and v5.5.2 as well.
+
+This is true until it is not. It can be because a plugin dependency has seen itself updated
+in the new patch release or because an API has changed in a patch release. In this case, building
+the plugin for this new release will, of course, resolve the problem.
+
+The same can be said for the last release and the nightly build. However, since the very reason
+to build a plugin for a nightly is to have access to new features ahead of time. If these new features,
+only available in the nightly, are used in the plugin, then it will, of course, be necessary to build the
+plugin for this nightly hash.
 
 License
 =======

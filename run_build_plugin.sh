@@ -7,9 +7,9 @@ An open-source docker based script to facilitate the building of plugins for the
 
 Options:
   -d   Path to a directory containing a plugin. This directory should contain a CMakeLists.txt.
-       If no directory is provided, this script will try to use a plugin.tgz file in the root directory.
+       If no directory is provided, this script will try to use a plugin.tgz file in the current directory.
 
-  -j   Jobs : number of parallel jobs to build the plugin with. Default is 8.
+  -j   Jobs : Number of parallel jobs to build the plugin with. Default is 8.
 
 hashOrTag:
   Must correspond to the tag of an existing docker image named 'paraview' built with

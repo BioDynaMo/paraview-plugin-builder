@@ -23,7 +23,7 @@ hashOrTag:
        v5.4.1, v5.5.0, v5.5.1, v5.5.2, v5.6.0, v5.6.1, v5.6.2, v5.7.0
 
   nightlyHash  A specific hash corresponding to a nightly build. Only hash after the last release tag
-               are supported, the superbuild will always uses it last master and ParaView will be configured
+               are supported, the superbuild will always use its last master and ParaView will be configured
                with the last version of the configuration." 1>&2; exit 1; }
 
 centosVersion=7
