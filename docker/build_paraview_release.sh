@@ -13,7 +13,12 @@ cd "$workdir"
 git clone "$url"
 cd "$srcdir"
 git checkout $1
+if [ $? -ne 0 ]; then
+    echo "Unknown release tag in the ParaView superbuild ${1}"
+    exit 1
+fi
+
 git submodule update --init
 cd "$builddir"
-$HOME/misc/root/cmake/bin/cmake -C $HOME/paraviewSuperbuildLinux.cmake ../paraview-superbuild
+$HOME/misc/root/cmake/bin/cmake -DSUPERBUILD_PROJECT_PARALLELISM=$4 -DFULL_BUILD=$3 -DPYTHON_VERSION=$2  -C $HOME/paraviewSuperbuildLinux.cmake ../paraview-superbuild
 make
