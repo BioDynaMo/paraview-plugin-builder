@@ -85,12 +85,15 @@ then
   if [[ "$1" == v5.7.? ]]
   then
     cp ./build/lib64/paraview-5.7/plugins/*/*.so ./
+  elif [[ "$1" == v5.8.? ]]
+  then
+    cp ./build/lib64/paraview-5.8/plugins/*/*.so ./
   else
     cp ./build/lib*.so ./
   fi
 else
   # If not, we suppose that it is a nightly build
-  cp ./build/lib64/paraview-5.7/plugins/*/*.so ./
+  cp ./build/lib64/paraview-5.8/plugins/*/*.so ./
 fi
 rm -rf ./build
 rm -rf ./plugin.tgz

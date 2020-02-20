@@ -23,6 +23,7 @@ cmake \
   -DENABLE_qt5:BOOL=ON \
   "-Dqt_install_location:PATH=$HOME/misc/root/qt5" \
   "-Dqt5_SOURCE_SELECTION:STRING=5.10" \
+  "-Dqt5_ENABLE_SVG:BOOL=ON" \
   -GNinja \
   "$srcdir/standalone-qt"
 ninja

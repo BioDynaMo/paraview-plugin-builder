@@ -51,14 +51,14 @@ The following release versions are supported:
  * v5.6.1 
  * v5.6.2 
  * v5.7.0
+ * v5.8.0
 
 About nightly hash builds: only nightly release after the last release tag are supported.
 The last master superbuild will always be used and ParaView will be configured with
 the last version parameters.
 
 The nightly hash is present in the name of the nightly release download :
-ParaView-5.7.0-492-g83a6c73-MPI-Linux-Python3.7-64bit.tgz hash is `83a6c73`.
-
+ParaView-5.8.0-222-gcadf748-MPI-Linux-Python3.7-64bit.tgz hash is `cadf748`.
 Once the script finished a new image named paraview and tagged `hashOrTag` should appear:
 
 ```

@@ -11,7 +11,7 @@ Options:
        See README.md for more info.
 
   -p   Python version to build ParaView with. Only 2 and 3 are supported. Default is 3.
-       This option is taken into account only with v5.7.X and nightly hash
+       This option is taken into account only with v5.7.X, v5.8.X and nightly hash
 
   -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
        It is not needed most of the time and will result in longer compilation of ParaView.
@@ -20,7 +20,7 @@ Options:
 
 hashOrTag:
   v*   A release tag of ParaView. the following versions are supported:
-       v5.4.1, v5.5.0, v5.5.1, v5.5.2, v5.6.0, v5.6.1, v5.6.2, v5.7.0
+       v5.4.1, v5.5.0, v5.5.1, v5.5.2, v5.6.0, v5.6.1, v5.6.2, v5.7.0, v5.8.0
 
   nightlyHash  A specific hash corresponding to a nightly build. Only hash after the last release tag
                are supported, the superbuild will always use its last master and ParaView will be configured
@@ -81,10 +81,13 @@ then
     echo "Unknown release tag ${hashOrTag}"
     exit 1
   fi
-  # Check if it is a 5.7 build as it requires specific files
+  # Check if it is a 5.7 or 5.8 build as it requires specific files
   if [[ "${hashOrTag}" == v5.7.? ]]
   then
     cp ./docker/build_plugin_v5.7.sh ./docker/build_plugin.sh
+  elif [[ "${hashOrTag}" == v5.8.? ]]
+  then
+    cp ./docker/build_plugin_v5.8.sh ./docker/build_plugin.sh
   else
     cp ./docker/build_plugin_older.sh ./docker/build_plugin.sh
   fi
