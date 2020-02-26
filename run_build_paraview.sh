@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Options management
-usage() { echo "Usage: $0 [-c <6|7>] [-p <2|3>] [-f] [-j jobs] hashOrTag
+usage() { echo "Usage: $0 [-c <6|7>] [-p <2|3>] [-f] [-b] [-j jobs] hashOrTag
 
 An open-source docker based script to facilitate the building of plugins for the binary release of ParaView.
 
@@ -15,6 +15,8 @@ Options:
 
   -f   Full build : Pass this flag to enable all release options on the ParaView superbuild.
        It is not needed most of the time and will result in longer compilation of ParaView.
+      
+  -b   BioDynaMo : Pass this flag to build ParaView used for BioDynaMo.
 
   -j   Jobs : number of parallel jobs to build ParaView with. Default is nproc+1.
 
@@ -30,7 +32,8 @@ centosVersion=7
 fullBuild=OFF
 let nbJobs=`nproc`+1
 pythonVersion=3
-while getopts ":c:p:fj:" o; do
+bdm=""
+while getopts ":c:p:fbj:" o; do
     case "${o}" in
         c)
             centosVersion=${OPTARG}
@@ -42,6 +45,9 @@ while getopts ":c:p:fj:" o; do
             ;;
         f)
             fullBuild=ON
+            ;;
+        b)
+            bdm="bdm_"
             ;;
         j)
             nbJobs=${OPTARG}
@@ -101,13 +107,18 @@ fi
 
 # Build the docker image
 echo "Building ParaView..."
-docker build -t "paraview:${hashOrTag}" \
+if [[ "${bdm}" == "bdm_" ]]; then
+  echo "BioDynaMo version ENABLED"
+fi
+docker build -t "paraview:${bdm}${hashOrTag}" \
+  --network=host \
   --build-arg hashOrTag=${hashOrTag} \
   --build-arg qthash=${qthash} \
   --build-arg centosVersion=${centosVersion} \
   --build-arg devtoolset=${devtoolset} \
   --build-arg pythonVersion=${pythonVersion} \
   --build-arg fullBuild=${fullBuild} \
+  --build-arg bdm=${bdm} \
   --build-arg nbJobs=${nbJobs} \
   ./docker/
 echo "Done."

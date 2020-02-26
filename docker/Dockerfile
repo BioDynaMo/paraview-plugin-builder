@@ -32,11 +32,12 @@ ARG pythonVersion
 ARG fullBuild
 ARG centosVersion
 ARG nbJobs
+ARG bdm
 RUN echo "Building ParaView $hashOrTag on CentOS $centosVersion with devtoolset-$devtoolset using $nbJobs jobs ..."
 
 # Build ParaView
 COPY build_paraview.sh /home/buildslave/build_paraview.sh
-COPY cmake/paraviewSuperbuildLinux_$hashOrTag.cmake /home/buildslave/paraviewSuperbuildLinux.cmake
+COPY cmake/${bdm}paraviewSuperbuildLinux_$hashOrTag.cmake /home/buildslave/paraviewSuperbuildLinux.cmake
 RUN scl enable devtoolset-$devtoolset -- sh /home/buildslave/build_paraview.sh $hashOrTag $pythonVersion $fullBuild $nbJobs
 
 # Prepare Plugin Building
